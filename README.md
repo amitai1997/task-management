@@ -39,3 +39,4 @@ To run the script, execute `python scraper.py` in the project directory. The scr
 4. **Depth factor of zero**: save only the source URL content.
 
 5. **Large number of extracted URLs**: limit the number of extracted URLs to avoid performance issues or crashes. For example, you can set a maximum number of URLs to extract per depth level and handle it appropriately. (default :1000 links)
+# task-management
