@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from app import db
 
 
 class Task(db.Model):
@@ -10,4 +8,4 @@ class Task(db.Model):
     description = db.Column(db.String(256))
     due_date = db.Column(db.Date)
     status = db.Column(db.String(20))
-    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    # project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
