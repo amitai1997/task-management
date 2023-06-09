@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from app.app import app
 from app.services.billing_service import BillingService
 
 

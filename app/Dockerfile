@@ -1,5 +1,7 @@
 # Use the official Python base image
-FROM python:3.9-slim
+FROM python:3.9-slim as base
+
+RUN apt-get update
 
 # Set the working directory in the container
 WORKDIR /app
@@ -12,13 +14,18 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . app/
 
 # Set the environment variables
+ENV FLASK_ENV="docker"
 ENV FLASK_APP=app.app
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_ENV=development
-ENV FLASK_DEBUG=1
 
 # Expose the port that the Flask application will run on
 EXPOSE 5000
 
+# Debug image reusing the base
+FROM base as debug
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE 1
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED 1
+
 # Run the Flask application
-CMD ["flask", "run"]
+# CMD ["flask", "run"]

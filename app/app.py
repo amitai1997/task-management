@@ -3,15 +3,16 @@ from app.config import *
 
 app = Flask(__name__)
 
-from app.controllers.billing_controller import billing_bp
+# Import endpoint file
+# from app.controllers.billing_controller import billing_bp
 
 # Register blueprints
-app.register_blueprint(billing_bp)
+# app.register_blueprint(billing_bp)~
 
 
 @app.route("/")
 def index():
-    return "Hello, from alfabeitproj2!"
+    return "Hello, from task management!"
 
 
 if __name__ == "__main__":
