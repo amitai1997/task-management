@@ -1,5 +1,8 @@
 from app.models.task_model import Task
 from app.models.user_model import User
+from app.models.project_model import Project
+from app.models.project_task_model import ProjectTask
+
 from . import create_app
 
 

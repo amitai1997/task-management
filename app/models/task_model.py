@@ -8,4 +8,11 @@ class Task(db.Model):
     description = db.Column(db.String(256))
     due_date = db.Column(db.Date)
     status = db.Column(db.String(20))
-    # project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+
+    def __init__(self, title, description, due_date=None, status=None, project_id=None):
+        self.title = title
+        self.description = description
+        self.due_date = due_date
+        self.status = status
+        self.project_id = project_id
