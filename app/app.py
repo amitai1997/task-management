@@ -1,13 +1,35 @@
+from app.models.task_model import Task
 from flask import Flask
-from app.config import *
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 
-# Import endpoint file
-# from app.controllers.billing_controller import billing_bp
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:example@db:5432/task_management'
 
-# Register blueprints
-# app.register_blueprint(billing_bp)~
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+
+# class User(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.String, unique=True, nullable=False)
+#     email = db.Column(db.String)
+
+
+with app.app_context():
+    db.create_all()
+
+# migrate = Migrate(app, db)
+
+# Import the models
+
+# Register the blueprints/controllers here
+# from app.controllers.task_controller import task_bp
+# from app.controllers.project_controller import project_bp
+# app.register_blueprint(task_bp)
+# app.register_blueprint(project_bp)
 
 
 @app.route("/")
