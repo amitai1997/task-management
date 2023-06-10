@@ -39,5 +39,5 @@ def update_project(project_id):
 def delete_project(project_id):
     result = project_service.delete_project(project_id)
     if result:
-        return jsonify({'message': 'Project deleted'}), 200
+        return jsonify({'message': 'Project deleted'}), 204
     return jsonify({'message': 'Project not found'}), 404

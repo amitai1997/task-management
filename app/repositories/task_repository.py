@@ -5,12 +5,12 @@ from app.models.task_model import Task
 class TaskRepository:
     def get_all_tasks(self):
         tasks = Task.query.all()
-        return [task.serialize() for task in tasks]
+        return [task for task in tasks]
 
     def get_task_by_id(self, task_id):
         task = Task.query.get(task_id)
         if task:
-            return task.serialize()
+            return task
         else:
             return None
 
@@ -28,7 +28,7 @@ class TaskRepository:
             task.due_date = data.get('due_date', task.due_date)
             task.status = data.get('status', task.status)
             db.session.commit()
-            return task.serialize()
+            return task
         else:
             return None
 

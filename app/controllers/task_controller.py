@@ -43,6 +43,6 @@ def update_task(task_id):
 def delete_task(task_id):
     result = task_service.delete_task(task_id)
     if result:
-        return '', 204
+        return jsonify({'message': 'Task deleted'}), 204
     else:
         return jsonify({'error': 'Task not found'}), 404
