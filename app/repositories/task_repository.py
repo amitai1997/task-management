@@ -18,7 +18,7 @@ class TaskRepository:
         task = Task(**data)
         db.session.add(task)
         db.session.commit()
-        return task.serialize()
+        return task
 
     def update_task(self, task_id, data):
         task = Task.query.get(task_id)
