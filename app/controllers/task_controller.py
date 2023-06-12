@@ -5,10 +5,14 @@ task_bp = Blueprint('task_bp', __name__, url_prefix="/tasks")
 task_service = TaskService()
 
 
-@task_bp.route('/', methods=['POST'])
+@task_bp.route('/', methods=['GET'])
 def get_all_tasks():
-    project_id = request.get_json()['project_id']
-    data = request.get_json()
+    project_id = None
+
+    if request.is_json:
+        data = request.get_json()
+        project_id = data.get('project_id')
+
     if project_id:
         tasks = task_service.get_tasks_by_project(project_id)
     else:
