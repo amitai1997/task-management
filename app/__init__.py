@@ -14,6 +14,12 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
+    from app.models.project_model import Project
+    from app.models.status_model import Status
+    from app.models.task_model import Task
+    from app.models.user_model import User
+    from app.models.user_roles_model import UserRole
+
     db.init_app(app)
     migrate.init_app(app, db)
 
