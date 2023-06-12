@@ -7,6 +7,10 @@ class TaskRepository:
         tasks = Task.query.all()
         return [task for task in tasks]
 
+    def get_tasks_by_project(self, project_id):
+        tasks = Task.query.filter_by(project_id=project_id).all()
+        return [task for task in tasks]
+
     def get_task_by_id(self, task_id):
         task = Task.query.get(task_id)
         if task:

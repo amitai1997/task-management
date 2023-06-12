@@ -17,6 +17,8 @@ class Task(db.Model):
     due_date = db.Column(db.Date)
     status = db.Column(db.String(20))
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    project = db.relationship('Project', backref=db.backref(
+        'tasks', cascade='all, delete-orphan'))
 
     def __init__(self, title, description, due_date=None, status=None, project_id=None):
         self.title = title

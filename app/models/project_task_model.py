@@ -1,8 +1,14 @@
 from app import db
+from dataclasses import dataclass
 
 
+@dataclass
 class ProjectTask(db.Model):
     __tablename__ = 'project_tasks'
+    id: int
+    project_id: int
+    task_id: int
+
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey(
         'projects.id'), nullable=False)
