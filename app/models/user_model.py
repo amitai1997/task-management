@@ -1,7 +1,11 @@
 from app import db
 import datetime
+from dataclasses import dataclass
+import bcrypt
+from flask import Flask, current_app
 
 
+@dataclass
 class User(db.Model):
     __tablename__ = "user"
 
@@ -16,12 +20,8 @@ class User(db.Model):
     def __init__(self, username, email, password, first_name, last_name):
         self.username = username
         self.email = email
-        # self.password = bcrypt.generate_password_hash(
-        #     password, flask.current_app.config.get('BCRYPT_LOG_ROUNDS')).decode()
+        self.password = bcrypt.generate_password_hash(
+            password, current_app.config.get('BCRYPT_LOG_ROUNDS')).decode()
         self.first_name = first_name
         self.last_name = last_name
         self.registered_on = datetime.datetime.now()
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
