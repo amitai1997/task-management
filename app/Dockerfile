@@ -27,5 +27,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
+ENV DEV_DATABASE_URL 'postgresql://postgres:example@db:5432/task_management'
+
 # Run the Flask application
 # CMD ["flask", "run"]
