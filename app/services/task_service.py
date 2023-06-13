@@ -15,6 +15,7 @@ class TaskService:
         return self.task_repo.get_task_by_id(task_id)
 
     def create_task(self, data):
+        data['status_id'] = 1
         return self.task_repo.create_task(data)
 
     def update_task(self, task_id, data):
@@ -33,9 +34,13 @@ class TaskService:
                 if task.status_id == 1 and new_status_id == 3:
                     raise ValueError(
                         'cant change a "not started" task to "finished')
+                if new_status_id == 1:
+                    raise ValueError(
+                        'cant change a task to "not started status after started')
 
         data = {"status_id": new_status_id}
-        return self.task_repo.update_task(task_id, data)
+        task = self.task_repo.update_task(task_id, data)
+        return task.serialize()
 
     def delete_task(self, task_id):
         return self.task_repo.delete_task(task_id)

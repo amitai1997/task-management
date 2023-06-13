@@ -5,16 +5,16 @@ from app.models.task_model import Task
 class TaskRepository:
     def get_all_tasks(self):
         tasks = Task.query.all()
-        return [task for task in tasks]
+        return [task.serialize() for task in tasks]
 
     def get_tasks_by_project(self, project_id):
         tasks = Task.query.filter_by(project_id=project_id).all()
-        return [task for task in tasks]
+        return [task.serialize() for task in tasks]
 
     def get_task_by_id(self, task_id):
         task = Task.query.get(task_id)
         if task:
-            return task
+            return task.serialize()
         else:
             return None
 
@@ -22,7 +22,7 @@ class TaskRepository:
         task = Task(**data)
         db.session.add(task)
         db.session.commit()
-        return task
+        return task.serialize()
 
     def update_task(self, task_id, data):
         task = Task.query.get(task_id)
