@@ -49,16 +49,17 @@ def update_task(task_id):
 
 @task_bp.route('/<int:task_id>/status', methods=['PUT'])
 def update_task_status(task_id):
-    new_status = None
+    if not request.is_json:
+        return jsonify({'error': 'Invalid request format'}), 400
 
-    if request.is_json:
-        data = request.get_json()
-        new_status = data.get('status')
+    data = request.get_json()
+    new_status = data.get('status')
 
-    if new_status:
-        task = task_service.update_task_status(task_id, new_status)
-    else:
-        return jsonify({'error': f'field "{list(data.keys())[0]}" not found'}), 404
+    if not new_status:
+        return jsonify({'error': 'Missing "status" field in request data'}), 400
+
+    task = task_service.update_task_status(task_id, new_status)
+
     if task:
         return jsonify(task), 200
     else:

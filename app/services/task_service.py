@@ -29,6 +29,10 @@ class TaskService:
             status = StatusRepository().get_status_by_id(new_status_id)
             if not status:
                 raise ValueError("Invalid status value")
+            else:
+                if task.status_id == 1 and new_status_id == 3:
+                    raise ValueError(
+                        'cant change a "not started" task to "finished')
 
         data = {"status_id": new_status_id}
         return self.task_repo.update_task(task_id, data)
