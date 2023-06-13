@@ -10,7 +10,7 @@ class Project(db.Model):
     description: str
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), nullable=False)
+    title = db.Column(db.String(128), nullable=False, unique=True)
     description = db.Column(db.String(256))
 
     def __init__(self, title, description):
