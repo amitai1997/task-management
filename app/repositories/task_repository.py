@@ -3,12 +3,8 @@ from app.models.task_model import Task
 
 
 class TaskRepository:
-    def get_all_tasks(self):
-        tasks = Task.query.all()
-        return [task.serialize() for task in tasks]
-
-    def get_tasks_by_project(self, project_id):
-        tasks = Task.query.filter_by(project_id=project_id).all()
+    def get_all_tasks(self, data):
+        tasks = Task.query.filter_by(**data).all()
         return [task.serialize() for task in tasks]
 
     def get_task_by_id(self, task_id):

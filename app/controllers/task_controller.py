@@ -7,16 +7,12 @@ task_service = TaskService()
 
 @task_bp.route('/', methods=['GET'])
 def get_all_tasks():
-    project_id = None
+    data = {}
 
     if request.is_json:
         data = request.get_json()
-        project_id = data.get('project_id')
 
-    if project_id:
-        tasks = task_service.get_tasks_by_project(project_id)
-    else:
-        tasks = task_service.get_all_tasks()
+    tasks = task_service.get_all_tasks(data)
 
     return jsonify(tasks), 200
 

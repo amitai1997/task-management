@@ -5,11 +5,8 @@ class TaskService:
     def __init__(self):
         self.task_repo = TaskRepository()
 
-    def get_all_tasks(self):
-        return self.task_repo.get_all_tasks()
-
-    def get_tasks_by_project(self, project_id):
-        return self.task_repo.get_tasks_by_project(project_id)
+    def get_all_tasks(self, data):
+        return self.task_repo.get_all_tasks(data)
 
     def get_task_by_id(self, task_id):
         return self.task_repo.get_task_by_id(task_id)
