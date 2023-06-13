@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import config
@@ -22,5 +22,12 @@ def create_app(config_name):
 
     db.init_app(app)
     migrate.init_app(app, db)
+
+    @app.errorhandler(Exception)
+    def handle_error(error):
+        error_message = f'error: {error}'
+
+        app.logger.error(error_message)
+        return jsonify({"error": str(error)}), 500
 
     return app
