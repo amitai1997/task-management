@@ -20,5 +20,18 @@ class TaskService:
     def update_task(self, task_id, data):
         return self.task_repo.update_task(task_id, data)
 
+    def update_task_status(self, task_id, new_status_id):
+        from app.models.task_model import Task
+        from app.repositories.status_repository import StatusRepository
+
+        task = Task.query.get(task_id)
+        if task:
+            status = StatusRepository().get_status_by_id(new_status_id)
+            if not status:
+                raise ValueError("Invalid status value")
+
+        data = {"status_id": new_status_id}
+        return self.task_repo.update_task(task_id, data)
+
     def delete_task(self, task_id):
         return self.task_repo.delete_task(task_id)

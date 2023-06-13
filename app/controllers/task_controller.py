@@ -47,6 +47,24 @@ def update_task(task_id):
         return jsonify({'error': 'Task not found'}), 404
 
 
+@task_bp.route('/<int:task_id>/status', methods=['PUT'])
+def update_task_status(task_id):
+    new_status = None
+
+    if request.is_json:
+        data = request.get_json()
+        new_status = data.get('status')
+
+    if new_status:
+        task = task_service.update_task_status(task_id, new_status)
+    else:
+        return jsonify({'error': f'field "{list(data.keys())[0]}" not found'}), 404
+    if task:
+        return jsonify(task), 200
+    else:
+        return jsonify({'error': 'Task not found'}), 404
+
+
 @task_bp.route('/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
     result = task_service.delete_task(task_id)

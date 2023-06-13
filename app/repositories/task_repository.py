@@ -27,10 +27,8 @@ class TaskRepository:
     def update_task(self, task_id, data):
         task = Task.query.get(task_id)
         if task:
-            task.title = data.get('title', task.title)
-            task.description = data.get('description', task.description)
-            task.due_date = data.get('due_date', task.due_date)
-            task.status = data.get('status', task.status)
+            for key, value in data.items():
+                setattr(task, key, value)
             db.session.commit()
             return task
         else:

@@ -10,6 +10,7 @@ class Task(db.Model):
     description: str
     due_date: str
     project_id: int
+    status_id: int
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False)
