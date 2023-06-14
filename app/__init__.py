@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import config
+from app.utils.helpers import ai_errors
 
 
 db = SQLAlchemy()

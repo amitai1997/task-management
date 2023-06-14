@@ -1,6 +1,8 @@
 alembic==1.11.1
 bcrypt==4.0.1
 blinker==1.6.2
+certifi==2023.5.7
+charset-normalizer==3.1.0
 click==8.1.3
 debugpy==1.6.7
 Flask==2.3.2
@@ -8,6 +10,7 @@ Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.3
 format-datetime==0.6.dev0
 greenlet==2.0.2
+idna==3.4
 importlib-metadata==6.6.0
 importlib-resources==5.12.0
 itsdangerous==2.1.2
@@ -17,6 +20,9 @@ MarkupSafe==2.1.2
 psycopg2-binary==2.9.6
 python-dotenv==1.0.0
 pytz==2023.3
+requests==2.31.0
 SQLAlchemy==2.0.15
 typing-extensions==4.6.3
+urllib3==2.0.3
+Werkzeug==2.3.6
 zipp==3.15.0
