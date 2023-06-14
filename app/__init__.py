@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import config
-from app.utils.helpers import ai_errors
 
 
 db = SQLAlchemy()
@@ -20,6 +19,8 @@ def create_app(config_name):
     from app.models.task_model import Task
     from app.models.user_model import User
     from app.models.user_roles_model import UserRole
+    from app.models.user_role_permission_model import UserRolePermission
+    from app.models.permission_model import Permission
 
     db.init_app(app)
     migrate.init_app(app, db)

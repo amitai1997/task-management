@@ -17,8 +17,7 @@ class UserRoleRepository:
     def create_user_role(self, data):
         user_role = UserRole(
             name=data['name'],
-            description=data['description'],
-            permissions=data['permissions']
+            description=data['description']
         )
         db.session.add(user_role)
         db.session.commit()
