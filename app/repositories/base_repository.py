@@ -8,7 +8,7 @@ class BaseRepository:
     def get_by_id(self, instance_id):
         instance = self.model.query.get(instance_id)
         if instance:
-            return instance
+            return instance.serialize()
         else:
             return None
 

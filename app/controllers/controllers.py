@@ -10,13 +10,13 @@ class AaaAPI(BaseAPI):
         self.add_url_rule('/', methods=['GET'],
                           view_func=self.get_all_instances)
         self.add_url_rule(
-            '/<int:aaa>', methods=['GET'], view_func=self.get_instance)
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
         self.add_url_rule('/', methods=['POST'],
                           view_func=self.create_instance)
         self.add_url_rule(
-            '/<int:aaa_id>', methods=['PUT'], view_func=self.update_instance)
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
         self.add_url_rule(
-            '/<int:aaa_id>', methods=['DELETE'], view_func=self.delete_instance)
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class PermissionAPI(BaseAPI):
@@ -55,6 +55,22 @@ class StatusAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/status"):
         super().__init__(name, import_name, url_prefix, StatusService())
         self.status_service = StatusService()
+        self.add_url_rule('/', methods=['GET'],
+                          view_func=self.get_all_instances)
+        self.add_url_rule(
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
+        self.add_url_rule('/', methods=['POST'],
+                          view_func=self.create_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
+
+
+class TaskAPI(BaseAPI):
+    def __init__(self, name, import_name, url_prefix="/task"):
+        super().__init__(name, import_name, url_prefix, TaskService())
+        self.task_service = TaskService()
         self.add_url_rule('/', methods=['GET'],
                           view_func=self.get_all_instances)
         self.add_url_rule(

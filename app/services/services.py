@@ -20,3 +20,8 @@ class ProjectService(BaseService):
 class StatusService(BaseService):
     def __init__(self):
         super().__init__(StatusRepository())
+
+
+class TaskService(BaseService):
+    def __init__(self):
+        super().__init__(TaskRepository())

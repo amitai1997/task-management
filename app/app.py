@@ -1,11 +1,8 @@
 import os
 from flask import Flask, jsonify
-# from app.controllers.project_controller import project_bp
 from app.controllers.task_controller import task_bp
 from app.controllers.user_controller import user_bp
 from app.controllers.user_role_controller import user_role_bp
-# from app.controllers.status_controller import status_bp
-# from app.controllers.permission_controller import permission_bp
 from app.controllers.user_role_permission_controller import user_role_permission_bp
 from app.controllers.controllers import *
 
@@ -18,10 +15,8 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 # Register the blueprints/controllers here
 app.register_blueprint(task_bp)
-# app.register_blueprint(project_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(user_role_bp)
-# app.register_blueprint(status_bp)
 app.register_blueprint(user_role_permission_bp)
 
 aaa_bp = AaaAPI('aaa_bp', __name__, url_prefix="/aaa")

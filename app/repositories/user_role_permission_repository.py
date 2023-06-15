@@ -12,7 +12,7 @@ class UserRolePermissionRepository:
         user_role_permission = UserRolePermission.query.get(
             user_role_permission_id)
         if user_role_permission:
-            return user_role_permission
+            return user_role_permission.serialize()
         else:
             return None
 

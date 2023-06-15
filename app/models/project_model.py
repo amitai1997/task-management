@@ -1,9 +1,10 @@
 from app import db
 from dataclasses import dataclass
+from .base_model import BaseModel
 
 
 @dataclass
-class Project(db.Model):
+class Project(db.Model, BaseModel):
     __tablename__ = 'projects'
     id: int
     title: str

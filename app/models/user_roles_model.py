@@ -1,10 +1,11 @@
 from app import db
 from dataclasses import dataclass
 from sqlalchemy.orm import Mapped
+from .base_model import BaseModel
 
 
 @dataclass
-class UserRole(db.Model):
+class UserRole(db.Model, BaseModel):
     __tablename__ = "user_roles"
     id: int
     name: str

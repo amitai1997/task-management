@@ -1,10 +1,11 @@
 from app import db
 from dataclasses import dataclass
 from sqlalchemy.orm import Mapped
+from .base_model import BaseModel
 
 
 @dataclass
-class Permission(db.Model):
+class Permission(db.Model, BaseModel):
     __tablename__ = 'permissions'
     id: int
     name: str
@@ -15,5 +16,8 @@ class Permission(db.Model):
     roles = db.relationship('UserRolePermission',
                             cascade='all, delete', backref='permission')
 
-    def __init__(self, name):
-        self.name = name
+    def serialize(self) -> dict:
+        serialized_model = super().serialize()
+        serialized_model['roles'] = [
+            [role.serialize()["permission"], role.serialize()["user_role"]] for role in self.roles] if self.roles else None
+        return serialized_model

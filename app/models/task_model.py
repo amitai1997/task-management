@@ -1,9 +1,13 @@
 from app import db
 from app.utils.helpers import serialize_model
+from dataclasses import dataclass
+from sqlalchemy.orm import Mapped
+from .base_model import BaseModel
 
 
-class Task(db.Model):
+class Task(db.Model, BaseModel):
     __tablename__ = 'tasks'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(256))
@@ -11,12 +15,14 @@ class Task(db.Model):
     status_id = db.Column(db.Integer, db.ForeignKey('statuses.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     status = db.relationship('Status', backref=db.backref(
-        'tasks', cascade='all, delete-orphan'))
+        'task', cascade='all, delete-orphan'))
     project = db.relationship('Project', backref=db.backref(
-        'tasks', cascade='all, delete-orphan'))
+        'task', cascade='all, delete-orphan'))
 
     def serialize(self) -> dict:
-        serialized_model = serialize_model(self)
+        serialized_model = super().serialize()
         serialized_model['status'] = self.status.title if self.status else None
+        serialized_model['project'] = self.project.title if self.title else None
         serialized_model.pop('status_id', None)
+        serialized_model.pop('project_id', None)
         return serialized_model

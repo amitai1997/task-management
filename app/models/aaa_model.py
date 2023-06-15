@@ -1,9 +1,10 @@
 from app import db
 from dataclasses import dataclass
+from .base_model import BaseModel
 
 
 @dataclass
-class Aaa(db.Model):
+class Aaa(db.Model, BaseModel):
     __tablename__ = 'aaa'
     username: tuple
     email: tuple
