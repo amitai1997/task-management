@@ -31,7 +31,7 @@ class TaskService(BaseService):
         from app.models.task_model import Task
         from app.repositories.repositories import StatusRepository
 
-        task = Task.query.get(task_id)
+        task = self.get_basic_by_id(task_id)
         if task:
             status = StatusRepository().get_by_id(new_status_id)
             if not status:

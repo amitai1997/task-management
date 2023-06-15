@@ -12,6 +12,13 @@ class BaseRepository:
         else:
             return None
 
+    def get_basic_by_id(self, instance_id):
+        instance = self.model.query.get(instance_id)
+        if instance:
+            return instance
+        else:
+            return None
+
     def get_all(self, data):
         instances = self.model.query.filter_by(**data).all()
         return [instance.serialize() for instance in instances]
