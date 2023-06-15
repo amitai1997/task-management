@@ -1,9 +1,10 @@
 from app import db
 from dataclasses import dataclass
+from .base_model import BaseModel
 
 
 @dataclass
-class Status(db.Model):
+class Status(db.Model, BaseModel):
     __tablename__ = 'statuses'
     id: int
     title: str

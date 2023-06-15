@@ -26,14 +26,14 @@ class TaskService(BaseService):
     def __init__(self):
         super().__init__(TaskRepository())
 
-    def update_task_status(self, new_status_id):
+    def update_task_status(self, task_id, new_status_id):
 
         from app.models.task_model import Task
         from app.repositories.repositories import StatusRepository
 
         task = Task.query.get(task_id)
         if task:
-            status = StatusRepository().get_status_by_id(new_status_id)
+            status = StatusRepository().get_by_id(new_status_id)
             if not status:
                 raise ValueError("Invalid status value")
             else:
@@ -45,5 +45,5 @@ class TaskService(BaseService):
                         'cant change a task to "not started status after started')
 
         data = {"status_id": new_status_id}
-        task = self.task_repo.update_task(task_id, data)
+        task = self.update(task, **data)
         return task
