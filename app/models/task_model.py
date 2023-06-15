@@ -5,6 +5,7 @@ from sqlalchemy.orm import Mapped
 from .base_model import BaseModel
 
 
+@dataclass
 class Task(db.Model, BaseModel):
     __tablename__ = 'tasks'
 
@@ -12,8 +13,10 @@ class Task(db.Model, BaseModel):
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(256))
     due_date = db.Column(db.Date)
-    status_id = db.Column(db.Integer, db.ForeignKey('statuses.id'))
-    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    status_id = db.Column(db.Integer, db.ForeignKey(
+        'statuses.id'), nullable=False)
+    project_id = db.Column(db.Integer, db.ForeignKey(
+        'projects.id'), nullable=False)
     status = db.relationship('Status', backref=db.backref(
         'task', cascade='all, delete-orphan'))
     project = db.relationship('Project', backref=db.backref(

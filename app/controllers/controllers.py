@@ -81,3 +81,5 @@ class TaskAPI(BaseAPI):
             '/<int:id>', methods=['PUT'], view_func=self.update_instance)
         self.add_url_rule(
             '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
+        self.add_url_rule(
+            '/<int:task_id>/status', methods=['PUT'], view_func=self.task_service.update_task_status)
