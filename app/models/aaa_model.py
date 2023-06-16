@@ -1,6 +1,6 @@
-from app import db
 from dataclasses import dataclass
 from .base_model import BaseModel
+from app import db
 
 
 @dataclass
