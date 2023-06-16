@@ -118,3 +118,35 @@ class UserAPI(BaseAPI):
             '/<int:id>', methods=['PUT'], view_func=self.update_instance)
         self.add_url_rule(
             '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
+
+
+class UserRoleAPI(BaseAPI):
+    def __init__(self, name, import_name, url_prefix="/UserRole"):
+        super().__init__(name, import_name, url_prefix, UserRoleService())
+        self.UserRole_service = UserRoleService()
+        self.add_url_rule('/', methods=['GET'],
+                          view_func=self.get_all_instances)
+        self.add_url_rule(
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
+        self.add_url_rule('/', methods=['POST'],
+                          view_func=self.create_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
+
+
+class UserRolePermissionAPI(BaseAPI):
+    def __init__(self, name, import_name, url_prefix="/UserRolePermission"):
+        super().__init__(name, import_name, url_prefix, UserRolePermissionService())
+        self.UserRolePermission_service = UserRolePermissionService()
+        self.add_url_rule('/', methods=['GET'],
+                          view_func=self.get_all_instances)
+        self.add_url_rule(
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
+        self.add_url_rule('/', methods=['POST'],
+                          view_func=self.create_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)

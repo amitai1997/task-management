@@ -52,3 +52,13 @@ class TaskService(BaseService):
 class UserService(BaseService):
     def __init__(self):
         super().__init__(UserRepository())
+
+
+class UserRoleService(BaseService):
+    def __init__(self):
+        super().__init__(UserRoleRepository())
+
+
+class UserRolePermissionService(BaseService):
+    def __init__(self):
+        super().__init__(UserRolePermissionRepository())

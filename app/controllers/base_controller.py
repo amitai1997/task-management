@@ -14,7 +14,7 @@ class BaseAPI(Blueprint):
         return jsonify(instance)
 
     def get_instance(self, id):
-        instance = self.service.get_basic_by_id(id)
+        instance = self.service.get_by_id(id)
         if instance:
             return jsonify(instance)
         else:

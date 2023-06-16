@@ -39,11 +39,11 @@ class UserRepository(BaseRepository):
         super().__init__(User)
 
 
-class UserRolePermissionRepository(BaseRepository):
+class UserRoleRepository(BaseRepository):
     def __init__(self):
         super().__init__(UserRole)
 
 
-class UserRoleRepository(BaseRepository):
+class UserRolePermissionRepository(BaseRepository):
     def __init__(self):
         super().__init__(UserRolePermission)
