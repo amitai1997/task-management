@@ -4,7 +4,7 @@ from .base_model import BaseModel
 
 
 @dataclass
-class Aaa(db.Model, BaseModel):
+class Aaa(BaseModel, db.Model):
     __tablename__ = 'aaa'
     username: tuple
     email: tuple

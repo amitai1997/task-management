@@ -1,12 +1,8 @@
 import os
-from flask import Flask, jsonify
-# from app.controllers.task_controller import task_bp
 from app.controllers.user_controller import user_bp
 from app.controllers.user_role_controller import user_role_bp
 from app.controllers.user_role_permission_controller import user_role_permission_bp
 from app.controllers.controllers import *
-
-from dotenv import load_dotenv
 
 from . import create_app
 
