@@ -3,10 +3,11 @@ import datetime
 from dataclasses import dataclass
 import bcrypt
 from flask import Flask, current_app
+from .base_model import BaseModel
 
 
 @dataclass
-class User(db.Model):
+class User(BaseModel, db.Model):
     __tablename__ = "user"
     id: int
     username: str
@@ -28,8 +29,11 @@ class User(db.Model):
         self.email = email
         self.password = bcrypt.hashpw(password.encode(
             'utf-8'), bcrypt.gensalt(current_app.config['BCRYPT_LOG_ROUNDS']))
-        # self.password = bcrypt.generate_password_hash(
-        #     password, current_app.config.get('BCRYPT_LOG_ROUNDS')).decode()
         self.first_name = first_name
         self.last_name = last_name
         self.registered_on = datetime.datetime.now()
+
+    def serialize(self) -> dict:
+        serialized_model = super().serialize()
+        serialized_model.pop('password', None)
+        return serialized_model

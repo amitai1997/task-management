@@ -102,3 +102,19 @@ class TaskAPI(BaseAPI):
             '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
         self.add_url_rule('/<int:task_id>/status',
                           methods=['PUT'], view_func=update_task_status)
+
+
+class UserAPI(BaseAPI):
+    def __init__(self, name, import_name, url_prefix="/User"):
+        super().__init__(name, import_name, url_prefix, UserService())
+        self.User_service = UserService()
+        self.add_url_rule('/', methods=['GET'],
+                          view_func=self.get_all_instances)
+        self.add_url_rule(
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
+        self.add_url_rule('/', methods=['POST'],
+                          view_func=self.create_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)

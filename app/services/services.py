@@ -47,3 +47,8 @@ class TaskService(BaseService):
         data = {"status_id": new_status_id}
         task = self.update(task, **data)
         return task
+
+
+class UserService(BaseService):
+    def __init__(self):
+        super().__init__(UserRepository())
