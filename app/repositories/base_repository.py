@@ -28,6 +28,9 @@ class BaseRepository:
         if sort_params:
             query = self._apply_sorting(query, sort_params)
 
+        if limit:
+            query = query.limit(limit)
+
         instances = query.all()
         return [instance.serialize() for instance in instances]
 
@@ -65,33 +68,32 @@ class BaseRepository:
         return query
 
     def _apply_sorting(self, query, sort_params):
-        sort_field = sort_params.strip().lower()
-
-        # Check if sort_field starts with 'asc(' or 'desc('
-        if sort_field.startswith('asc('):
-            field = sort_field[4:-1]
-            order_by_field = getattr(self.model, field, None)
-            if order_by_field is not None and self._is_orderable_field(order_by_field):
-                query = query.order_by(order_by_field.asc())
-            else:
-                # Handle invalid sort field or non-orderable field error
-                raise ValueError(
-                    f"Invalid or non-orderable sort field: {field}")
-        elif sort_field.startswith('desc('):
-            field = sort_field[5:-1]
-            order_by_field = getattr(self.model, field, None)
-            if order_by_field is not None and self._is_orderable_field(order_by_field):
-                query = query.order_by(order_by_field.desc())
-            else:
-                # Handle invalid sort field or non-orderable field error
-                raise ValueError(
-                    f"Invalid or non-orderable sort field: {field}")
-        else:
-            # Handle invalid sort parameter error
-            raise ValueError(
-                "Invalid sort parameter format. Supported format: 'asc(field)' or 'desc(field)'")
+        sort_fields = sort_params.strip().split(',')
+        for sort_field in sort_fields:
+            sort_field = sort_field.strip()
+            field, order = self._parse_sort_field(sort_field)
+            if field and order:
+                order_by_field = getattr(self.model, field, None)
+                if order_by_field is not None and self._is_orderable_field(order_by_field):
+                    if order == 'asc':
+                        query = query.order_by(order_by_field.asc())
+                    elif order == 'desc':
+                        query = query.order_by(order_by_field.desc())
+                else:
+                    # Handle invalid sort field or non-orderable field error
+                    raise ValueError(
+                        f"Invalid or non-orderable sort field: {field}")
 
         return query
+
+    def _parse_sort_field(self, sort_field):
+        if sort_field.startswith('-'):
+            field = sort_field[1:]
+            order = 'desc'
+        else:
+            field = sort_field
+            order = 'asc'
+        return field, order
 
     def _is_orderable_field(self, field):
         try:

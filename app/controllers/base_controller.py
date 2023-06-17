@@ -24,16 +24,10 @@ class BaseAPI(Blueprint):
             '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
     def get_all_instances(self):
-
-        filter_params = {}
-        if request.is_json:
-            # Assuming filter parameters are sent in the request body as JSON
-            filter_params = request.get_json()
-
-        # Assuming sort parameters are sent as query parameters
+        filter_params = self._parse_filter_params()
         sort_params = request.args.get('sort_by')
-
-        instances = self.service.get_all(filter_params, sort_params)
+        limit = request.args.get('limit', type=int)
+        instances = self.service.get_all(filter_params, sort_params, limit)
         return jsonify(instances)
 
     def get_instance(self, id):
@@ -64,3 +58,16 @@ class BaseAPI(Blueprint):
             return jsonify({'message': 'Instance deleted'})
         else:
             return jsonify({'error': 'Instance not found'}), 404
+
+    def _parse_filter_params(self):
+        filter_params = {}
+
+        if 'filter' in request.args:
+            filter_expr = request.args.get('filter')
+            # Assuming filter expression is in the format: (field:operator:value,field:operator:value)
+            conditions = filter_expr.strip('()').split(',')
+            for condition in conditions:
+                field, operator, value = condition.split(':')
+                filter_params.setdefault(field, {})[operator] = value
+
+        return filter_params
