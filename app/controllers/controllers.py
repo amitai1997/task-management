@@ -1,4 +1,3 @@
-
 from flask import request, jsonify
 from app.controllers.base_controller import BaseAPI
 from app.services.services import *
@@ -7,146 +6,58 @@ from app.services.services import *
 class AaaAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/aaa"):
         super().__init__(name, import_name, url_prefix, AaaService())
-        self.aaa_service = AaaService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class PermissionAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/permission"):
         super().__init__(name, import_name, url_prefix, PermissionService())
-        self.permission_service = PermissionService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class ProjectAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/project"):
         super().__init__(name, import_name, url_prefix, ProjectService())
-        self.project_service = ProjectService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class StatusAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/status"):
         super().__init__(name, import_name, url_prefix, StatusService())
-        self.status_service = StatusService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class TaskAPI(BaseAPI):
     def __init__(self, name, import_name, url_prefix="/task"):
         super().__init__(name, import_name, url_prefix, TaskService())
-        self.task_service = TaskService()
 
-        def update_task_status(task_id):
-            if not request.is_json:
-                return jsonify({'error': 'Invalid request format'}), 400
+        self.add_custom_url_rule(
+            '/<int:task_id>/status', methods=['PUT'], view_func=self.update_task_status)
 
-            data = request.get_json()
-            new_status = data.get('status')
+    def update_task_status(self, task_id):
+        if not request.is_json:
+            return jsonify({'error': 'Invalid request format'}), 400
 
-            if not new_status:
-                return jsonify({'error': 'Missing "status" field in request data'}), 400
+        data = request.get_json()
+        new_status = data.get('status')
 
-            task = self.task_service.update_task_status(task_id, new_status)
+        if not new_status:
+            return jsonify({'error': 'Missing "status" field in request data'}), 400
 
-            if task:
-                return jsonify(task), 200
-            else:
-                return jsonify({'error': 'Task not found'}), 404
+        task = self.service.update_task_status(task_id, new_status)
 
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
-        self.add_url_rule('/<int:task_id>/status',
-                          methods=['PUT'], view_func=update_task_status)
+        if task:
+            return jsonify(task), 200
+        else:
+            return jsonify({'error': 'Task not found'}), 404
 
 
 class UserAPI(BaseAPI):
-    def __init__(self, name, import_name, url_prefix="/User"):
+    def __init__(self, name, import_name, url_prefix="/user"):
         super().__init__(name, import_name, url_prefix, UserService())
-        self.User_service = UserService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class UserRoleAPI(BaseAPI):
-    def __init__(self, name, import_name, url_prefix="/UserRole"):
+    def __init__(self, name, import_name, url_prefix="/user-role"):
         super().__init__(name, import_name, url_prefix, UserRoleService())
-        self.UserRole_service = UserRoleService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
 
 class UserRolePermissionAPI(BaseAPI):
-    def __init__(self, name, import_name, url_prefix="/UserRolePermission"):
+    def __init__(self, name, import_name, url_prefix="/user-role-permission"):
         super().__init__(name, import_name, url_prefix, UserRolePermissionService())
-        self.UserRolePermission_service = UserRolePermissionService()
-        self.add_url_rule('/', methods=['GET'],
-                          view_func=self.get_all_instances)
-        self.add_url_rule(
-            '/<int:id>', methods=['GET'], view_func=self.get_instance)
-        self.add_url_rule('/', methods=['POST'],
-                          view_func=self.create_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
-        self.add_url_rule(
-            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)

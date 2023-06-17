@@ -5,6 +5,23 @@ class BaseAPI(Blueprint):
     def __init__(self, name, import_name, url_prefix, service):
         self.service = service
         super().__init__(name, import_name, url_prefix=url_prefix)
+        self.add_url_rules()
+
+    def add_custom_url_rule(self, rule, endpoint=None, view_func=None, **options):
+        self.add_url_rule(
+            rule, endpoint=endpoint, view_func=view_func, **options)
+
+    def add_url_rules(self):
+        self.add_url_rule('/', methods=['GET'],
+                          view_func=self.get_all_instances)
+        self.add_url_rule(
+            '/<int:id>', methods=['GET'], view_func=self.get_instance)
+        self.add_url_rule('/', methods=['POST'],
+                          view_func=self.create_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['PUT'], view_func=self.update_instance)
+        self.add_url_rule(
+            '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
     def get_all_instances(self):
         data = {}
