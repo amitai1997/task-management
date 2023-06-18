@@ -1,6 +1,7 @@
 # Use the official Python base image
 FROM python:3.9-slim as base
 
+# Update the package manager
 RUN apt-get update
 
 # Set the working directory in the container
@@ -22,11 +23,14 @@ EXPOSE 5000
 
 # Debug image reusing the base
 FROM base as debug
+
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE 1
+
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
+# Set the development database URL
 ENV DEV_DATABASE_URL 'postgresql://postgres:example@db:5432/task_management'
 
 # Run the Flask application
