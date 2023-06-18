@@ -19,7 +19,7 @@ class BaseRepository:
         else:
             return None
 
-    def get_all(self, filter_params=None, sort_params=None, limit=None):
+    def get_all(self, filter_params=None, sort_params=None, limit=None, offset=None):
         query = self.model.query
 
         if filter_params:
@@ -30,6 +30,9 @@ class BaseRepository:
 
         if limit:
             query = query.limit(limit)
+
+        if offset:
+            query = query.offset(offset)
 
         instances = query.all()
         return [instance.serialize() for instance in instances]

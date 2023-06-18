@@ -8,8 +8,8 @@ class BaseService:
     def get_basic_by_id(self, instance_id):
         return self.repository.get_basic_by_id(instance_id)
 
-    def get_all(self, filter_params=None, sort_params=None, limit=None):
-        return self.repository.get_all(filter_params=filter_params, sort_params=sort_params, limit=limit)
+    def get_all(self, filter_params=None, sort_params=None, limit=None, offset=None):
+        return self.repository.get_all(filter_params=filter_params, sort_params=sort_params, limit=limit, offset=offset)
 
     def create(self, **kwargs):
         return self.repository.create(**kwargs)
