@@ -1,0 +1,13 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.wordWrapColumn": 100
+  },
+
+  "python.formatting.provider": "none",
+  "python.formatting.autopep8Args": ["--max-line-length=200"],
+  "editor.wordWrapColumn": 100,
+  "editor.tokenColorCustomizations": {
+    "comments": "#6cafa0"
+  }
+}
