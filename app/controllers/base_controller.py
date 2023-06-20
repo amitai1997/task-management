@@ -38,7 +38,7 @@ class BaseAPI(Blueprint):
         if instance:
             return jsonify(instance)
         else:
-            return jsonify({'error': 'Instance not found'}), 404
+            return jsonify({'error': f'Instance with id {id} not found'}), 404
 
     def create_instance(self):
         data = request.get_json()
@@ -52,7 +52,7 @@ class BaseAPI(Blueprint):
             instance = self.service.update(instance, **data)
             return jsonify(instance)
         else:
-            return jsonify({'error': 'Instance not found'}), 404
+            return jsonify({'error': f'Instance with id {id} not found'}), 404
 
     def delete_instance(self, id):
         instance = self.service.get_by_id(id)
@@ -60,7 +60,7 @@ class BaseAPI(Blueprint):
             self.service.delete(instance)
             return jsonify({'message': 'Instance deleted'})
         else:
-            return jsonify({'error': 'Instance not found'}), 404
+            return jsonify({'error': f'Instance with id {id} not found'}), 404
 
     def _parse_filter_params(self):
         filter_params = {}

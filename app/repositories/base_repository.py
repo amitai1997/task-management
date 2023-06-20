@@ -8,16 +8,12 @@ class BaseRepository:
     def get_by_id(self, instance_id):
         instance = self.model.query.get(instance_id)
         if instance:
-            return instance.serialize()
-        else:
-            return None
+            return instance
 
     def get_basic_by_id(self, instance_id):
         instance = self.model.query.get(instance_id)
         if instance:
             return instance
-        else:
-            return None
 
     def get_all(self, filter_params=None, sort_params=None, limit=None, offset=None):
         query = self.model.query
@@ -35,19 +31,19 @@ class BaseRepository:
             query = query.offset(offset)
 
         instances = query.all()
-        return [instance.serialize() for instance in instances]
+        return instances
 
     def create(self, **kwargs):
         instance = self.model(**kwargs)
         db.session.add(instance)
         db.session.commit()
-        return instance.serialize()
+        return instance
 
     def update(self, instance, **kwargs):
         for key, value in kwargs.items():
             setattr(instance, key, value)
         db.session.commit()
-        return instance.serialize()
+        return instance
 
     def delete(self, instance):
         db.session.delete(instance)

@@ -3,19 +3,28 @@ class BaseService:
         self.repository = repository
 
     def get_by_id(self, instance_id):
-        return self.repository.get_by_id(instance_id)
+        instance = self.repository.get_by_id(instance_id)
+        return instance.serialize() if instance else None
 
     def get_basic_by_id(self, instance_id):
-        return self.repository.get_basic_by_id(instance_id)
+        instance = self.repository.get_basic_by_id(instance_id)
+        return instance if instance else None
 
     def get_all(self, filter_params=None, sort_params=None, limit=None, offset=None):
-        return self.repository.get_all(filter_params=filter_params, sort_params=sort_params, limit=limit, offset=offset)
+        instances = self.repository.get_all(
+            filter_params=filter_params, sort_params=sort_params, limit=limit, offset=offset)
+        if instances:
+            return [instance.serialize() for instance in instances]
+        else:
+            return None
 
     def create(self, **kwargs):
-        return self.repository.create(**kwargs)
+        instance = self.repository.create(**kwargs)
+        return instance.serialize() if instance else None
 
     def update(self, instance, **kwargs):
-        return self.repository.update(instance, **kwargs)
+        instance = self.repository.update(instance, **kwargs)
+        return instance.serialize() if instance else None
 
     def delete(self, instance):
         self.repository.delete(instance)
