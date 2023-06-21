@@ -1,10 +1,14 @@
 import os
+from dotenv import load_dotenv
 from app.controllers.controllers import *
-
+from urllib.parse import urlencode
+from app.utils.auth import auth_bp, configure_oauth
 from . import create_app
 
+load_dotenv()
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+configure_oauth(app)  # Call configure_oauth to set up the OAuth provider
 
 # Register the blueprints/controllers here
 aaa_bp = AaaAPI('aaa_bp', __name__, url_prefix="/aaa")
@@ -23,6 +27,7 @@ user_role_bp = UserRoleAPI(
 user_role_permission_bp = UserRolePermissionAPI(
     'user_role_permission_db', __name__, url_prefix="/user-role-permissions")
 
+app.register_blueprint(auth_bp)
 app.register_blueprint(aaa_bp)
 app.register_blueprint(permission_bp)
 app.register_blueprint(project_bp)

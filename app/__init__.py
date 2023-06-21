@@ -1,22 +1,28 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from authlib.integrations.flask_client import OAuth
 from app.config import config
 from app.models.base_model import Base
+from urllib.parse import urlencode
 
 db = SQLAlchemy()
 migrate = Migrate()
+oauth = OAuth()
 
 
 def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
+    app.url_map.strict_slashes = False
 
     register_extensions(app)
     register_error_handlers(app)
     with app.app_context():
         register_models()
+
+    oauth.init_app(app)  # Initialize Auth0 OAuth object
 
     return app
 
