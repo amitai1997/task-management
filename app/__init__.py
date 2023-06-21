@@ -1,10 +1,9 @@
-from flask import Flask, jsonify, session
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from authlib.integrations.flask_client import OAuth
 from app.config import config
 from app.models.base_model import Base
-from urllib.parse import urlencode
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -13,16 +12,17 @@ oauth = OAuth()
 
 def create_app(config_name):
     app = Flask(__name__)
+
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     app.url_map.strict_slashes = False
 
     register_extensions(app)
     register_error_handlers(app)
+    register_blueprints(app)
+    register_oauth(app)
     with app.app_context():
         register_models()
-
-    oauth.init_app(app)  # Initialize Auth0 OAuth object
 
     return app
 
@@ -30,6 +30,16 @@ def create_app(config_name):
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
+
+
+def register_blueprints(app):
+    from app.utils.blueprints import register_blueprints
+    register_blueprints(app)
+
+
+def register_oauth(app):
+    from app.utils.auth import register_oauth
+    register_oauth(app)
 
 
 def register_error_handlers(app):
