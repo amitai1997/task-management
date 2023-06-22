@@ -1,7 +1,7 @@
 from app import oauth
 from flask import Blueprint, redirect, session, url_for
 from urllib.parse import urlencode
-from app import app
+from app.utils.auth import require_auth
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -29,3 +29,9 @@ def logout():
     session.clear()
     params = {'returnTo': url_for('index', _external=True), 'client_id': oauth.auth0.client_id}
     return redirect(oauth.auth0.api_base_url + '/v2/logout?' + urlencode(params))
+
+
+@auth_bp.route("/protected")
+@require_auth(None)
+def protected_route():
+    return "This is a protected route."

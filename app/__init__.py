@@ -5,6 +5,7 @@ from authlib.integrations.flask_client import OAuth
 from app.config import config
 from app.models.base_model import Base
 
+
 db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
