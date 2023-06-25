@@ -3,7 +3,7 @@ from app import oauth
 from flask import Blueprint, redirect, session, url_for
 from urllib.parse import urlencode
 from app.utils.auth import require_auth
-
+from app.security.guards import authorization_guard, permissions_guard
 auth_bp = Blueprint('auth', __name__)
 
 
@@ -37,6 +37,7 @@ def logout():
 
 
 @auth_bp.route("/protected")
-@require_auth(None)
+@authorization_guard
+@permissions_guard(['read:data'])
 def protected_route():
-    return "This is a protected route."
+    return "This is a protected route!."

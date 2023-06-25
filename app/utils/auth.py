@@ -1,17 +1,11 @@
 import os
+from flask import jsonify, abort
 from app import oauth
 from dotenv import load_dotenv
-from functools import wraps
-from flask import session, jsonify
-from authlib.jose import jwt
-
-from os import environ as env
-
-from dotenv import load_dotenv, find_dotenv
-from flask import Flask, jsonify
+from dotenv import load_dotenv
 from authlib.integrations.flask_oauth2 import ResourceProtector
 from app.utils.validator import Auth0JWTBearerTokenValidator
-from app import app
+
 
 load_dotenv()
 
@@ -44,3 +38,9 @@ def register_oauth(app):
         api_identifier
     )
     require_auth.register_token_validator(validator)
+
+
+def json_abort(status_code, data=None):
+    response = jsonify(data)
+    response.status_code = status_code
+    abort(response)
