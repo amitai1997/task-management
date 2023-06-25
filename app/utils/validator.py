@@ -12,11 +12,12 @@ class Auth0JWTBearerTokenValidator(JWTBearerTokenValidator):
         public_key = JsonWebKey.import_key_set(
             json.loads(jsonurl.read())
         )
-        super(Auth0JWTBearerTokenValidator, self).__init__(
-            public_key
-        )
         self.claims_options = {
             "exp": {"essential": True},
             "aud": {"essential": True, "value": audience},
             "iss": {"essential": True, "value": issuer},
         }
+
+        super(Auth0JWTBearerTokenValidator, self).__init__(
+            public_key
+        )

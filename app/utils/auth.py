@@ -20,7 +20,7 @@ require_auth = ResourceProtector()
 auth0_domain = os.getenv('AUTH0_DOMAIN')
 auth0_client_id = os.getenv('AUTH0_CLIENT_ID')
 auth0_client_secret = os.getenv('AUTH0_CLIENT_SECRET')
-validator_audience = os.getenv('VALIDATOR_AUDIENCE')
+api_identifier = os.getenv('API_IDENTIFIER')
 
 
 def register_oauth(app):
@@ -41,6 +41,6 @@ def register_oauth(app):
 
     validator = Auth0JWTBearerTokenValidator(
         f'{auth0_domain}',
-        validator_audience
+        api_identifier
     )
     require_auth.register_token_validator(validator)
