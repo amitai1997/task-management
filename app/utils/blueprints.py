@@ -1,8 +1,10 @@
 from flask import Blueprint
 from app.controllers.controllers import *
-from app.controllers.auth_controller import auth_bp
+from app.auth.auth_config import AuthBlueprint
 
 # Register the blueprints/controllers here
+auth_bp = AuthBlueprint(
+    'auth_bp', __name__, url_prefix="/auth")
 aaa_bp = AaaAPI('aaa_bp', __name__, url_prefix="/aaa")
 permission_bp = PermissionAPI(
     'permission_bp', __name__, url_prefix="/permissions")

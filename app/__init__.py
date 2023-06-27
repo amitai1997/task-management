@@ -4,15 +4,12 @@ from flask_migrate import Migrate
 from authlib.integrations.flask_client import OAuth
 from app.config import config
 from app.models.base_model import Base
-from app.security.auth0_service import Auth0Service
-from app.utils import safe_get_env_var
-from flask_cors import CORS
-
+from app.auth.decorators import RBACAuthenticator
 
 db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
-auth0_service = Auth0Service()
+authenticator = RBACAuthenticator()
 
 
 def create_app(config_name):
@@ -25,8 +22,7 @@ def create_app(config_name):
     register_extensions(app)
     register_error_handlers(app)
     register_blueprints(app)
-    register_oauth(app)
-    register_cors(app)
+    # register_RBACAuthenticator(app)
     with app.app_context():
         register_models()
 
@@ -43,24 +39,9 @@ def register_blueprints(app):
     register_blueprints(app)
 
 
-def register_oauth(app):
-    from app.utils.auth import register_oauth
-    auth0_audience = safe_get_env_var("API_IDENTIFIER")
-    auth0_domain = safe_get_env_var("AUTH0_DOMAIN")
-
-    register_oauth(app)
-    auth0_service.initialize(auth0_domain, auth0_audience)
-
-
-def register_cors(app):
-    client_origin_url = safe_get_env_var("CLIENT_ORIGIN_URL")
-    CORS(
-        app,
-        resources={r"/*": {"origins": "*"}}
-        #     allow_headers=["Authorization", "Content-Type"],
-        #     methods=["GET"],
-        #     max_age=86400
-    )
+def register_RBACAuthenticator(app):
+    from app.auth.decorators import RBACAuthenticator
+    authenticator = RBACAuthenticator()
 
 
 def register_error_handlers(app):
