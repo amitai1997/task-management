@@ -1,6 +1,6 @@
 import os
 import json
-from flask import session
+from flask import session, request
 import requests
 from functools import wraps
 from jose import jwt
@@ -19,10 +19,13 @@ class RBACAuthenticator:
         def decorator(f):
             @wraps(f)
             def decorated(*args, **kwargs):
-                if 'access_token' not in session:
+                token = None
+                if ('access_token' in session):
+                    token = session['access_token']
+                elif ('Authorization' in request.headers):
+                    token = request.headers.get('Authorization')[7:]
+                else:
                     return 'Access token not found.', 401
-
-                token = session['access_token']
 
                 # Retrieve and verify the key for signature verification
                 jwks = self._get_jwks()

@@ -1,4 +1,5 @@
 alembic==1.11.1
+aniso8601==9.0.1
 astroid==2.15.5
 Authlib==1.2.0
 bcrypt==4.0.1
@@ -15,6 +16,7 @@ Flask==2.3.2
 Flask-Cors==3.0.10
 Flask-JWT-Extended==4.5.2
 Flask-Migrate==4.0.4
+Flask-RESTful==0.3.10
 Flask-SQLAlchemy==3.0.3
 format-datetime==0.6.dev0
 greenlet==2.0.2

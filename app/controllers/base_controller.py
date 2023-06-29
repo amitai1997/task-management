@@ -1,5 +1,6 @@
 from flask import jsonify, request, Blueprint
 from datetime import datetime
+from app import authenticator
 
 
 class BaseAPI(Blueprint):
@@ -54,6 +55,7 @@ class BaseAPI(Blueprint):
         else:
             return jsonify({'error': f'Instance with id {id} not found'}), 404
 
+    @authenticator.requires_permission(['delete:data'])
     def delete_instance(self, id):
         instance = self.service.get_by_id(id)
         if instance:
