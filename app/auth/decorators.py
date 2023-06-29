@@ -25,8 +25,8 @@ class RBACAuthenticator:
                 token = session['access_token']
 
                 # Retrieve and verify the key for signature verification
-                jwks = self.get_jwks()
-                key = self.get_key(token, jwks)
+                jwks = self._get_jwks()
+                key = self._get_key(token, jwks)
 
                 try:
                     # Verify the token using the key
@@ -57,12 +57,12 @@ class RBACAuthenticator:
             return decorated
         return decorator
 
-    def get_jwks(self):
+    def _get_jwks(self):
         response = requests.get(self.jwks_url)
         jwks = json.loads(response.text)
         return jwks
 
-    def get_key(self, token, jwks):
+    def _get_key(self, token, jwks):
         headers = jwt.get_unverified_header(token)
         kid = headers.get('kid')
 
