@@ -22,7 +22,6 @@ def create_app(config_name):
     register_extensions(app)
     register_error_handlers(app)
     register_blueprints(app)
-    # register_RBACAuthenticator(app)
     with app.app_context():
         register_models()
 
@@ -37,11 +36,6 @@ def register_extensions(app):
 def register_blueprints(app):
     from app.utils.blueprints import register_blueprints
     register_blueprints(app)
-
-
-def register_RBACAuthenticator(app):
-    from app.auth.decorators import RBACAuthenticator
-    authenticator = RBACAuthenticator()
 
 
 def register_error_handlers(app):

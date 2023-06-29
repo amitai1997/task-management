@@ -1,0 +1,311 @@
+[33mcommit 5dfe5688323aac1d537980755d9fef0906ec7f3a[m[33m ([m[1;36mHEAD -> [m[1;32mauth-auth[m[33m)[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    last working auth
+
+[33mcommit 9f19b04937f98c0bbd7d2747ad27d7e382e7e078[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working auth mechanism
+
+[33mcommit 72233dded713626b7c8f0f5a57bdba4adac68468[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    not working
+
+[33mcommit 7b72d3d2886ffe6634abfa1bb6514267fabf199e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working version without rbac
+
+[33mcommit cd7d5a919a729db114d80e8d89f657a43623459e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working Bearer token auth with postman
+
+[33mcommit a14e2cce99fc80825cebf71e0c477d1675d63881[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working login logout
+
+[33mcommit 178b1f7af18ddbbffd3aac7612523ecdf0e571c2[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working basic login version
+
+[33mcommit 3572f5287e0ad76e33257b202c88436b23e40e63[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    move serializer and instance existance check to service layer
+
+[33mcommit b944b723567eb2b6855b9e777dc4d78ab0a6c61a[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    small fix
+
+[33mcommit c8d69aef4bf9818621f621f35ea66a80831546e3[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add .vscode directory
+
+[33mcommit 063d2bb24942ccf99ad2073ea83e07d28482869a[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    delete db folder
+
+[33mcommit 7da14a7ecbf58c68181da669eeedb4c5460ef6fc[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    change user table name to users table
+
+[33mcommit 464fa3c627e6e65b196562f6603b0019c1b3f670[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working sort, filter, limit and offset
+
+[33mcommit bb7a005c5d8a5bc2bb2052814617ca13dd1e669e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working
+
+[33mcommit 83b53563d7cff5e4d8a858ecd925614f2b29764d[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    on the way of implementing sort and filter for the api
+
+[33mcommit 816f7351d51644fe882c4650f3bca25e0da6afd9[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    baseapi
+
+[33mcommit 125f8ecd7a8823d11bb71fcc7013209e38ce5a7e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    last working version
+
+[33mcommit 276734f9cf0003ac35e6e48aa2141cabb7572fab[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix all models to generic mvc
+
+[33mcommit d2408dc996464e2a0157572145edbafb71a2b006[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix user model
+
+[33mcommit 9d626eb22e7284fcd39ffc11ce7092f00791d85a[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    lask working version
+
+[33mcommit 37070e56877f681196dda67cfc0e9282280b65a5[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working
+
+[33mcommit 49f99dbcf18191bfa58e7481565196d71bbe8977[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working
+
+[33mcommit 963891aa1ab8fc9c284be4a3d7789b9978d62838[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working
+
+[33mcommit 86a6ff597b99de0f7d46d0965304ae43ef19f790[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    last working verison
+
+[33mcommit 4456ebdf218465b7f74a8c6e10e5d44c6fa99eab[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    on my way to generic models
+
+[33mcommit a792ace50246ec94f1cd9d3c2e80c8e11240a85a[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add permission to role connection
+
+[33mcommit 621076047d9f7fe1422535f6781801ee7d04a571[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    serialize model automatically
+
+[33mcommit b40e02b7ae420fdba6ee9b28cd3ab9ba28b6bf6e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    unique names
+
+[33mcommit 35f3f73a438faec0d2e777439fa1b64181a07fda[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix error format
+
+[33mcommit 9ef6e98f6ff54fee519b957a117ba6e4980d3e17[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    get tasks filtered by value
+
+[33mcommit 7a76f12262261b584bbd403d2cfe93deb456dfe0[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    small fixes
+
+[33mcommit cb6784d962415e29621f42a93ded697841c06ee4[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    prevent changeing not started task to finished
+
+[33mcommit 426360ca9cf5c805174f0addc5d25c6e1a65bd9e[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add change task by status
+
+[33mcommit 72cb83a93888b0edc87a297a05ea153eeca564ea[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add status
+
+[33mcommit 9c831671b823573c883b6b4fb4a270f4970197f9[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix get tasks by project id func
+
+[33mcommit 8a9e8243f0a5050fdd185ff3aabbb8756ab3f7f3[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    last working version
+
+[33mcommit c538081b0d51601d3ed03e5a19d65b0a8158f0d8[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    get all tasks by project id
+
+[33mcommit 6d56bd96b0f14405f2307d3ffbbdb33823d8cd85[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add user_role api
+
+[33mcommit 4af3ce43f5460c9d21ab53ec461920bfa7fb3f52[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    create user api
+
+[33mcommit 1f5071522dfadd700073b51abc5a8c40d97cc4e1[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    config.py file
+
+[33mcommit 9236d2a065d5afd9d282b91de6707d17f6580d10[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    lask working version
+
+[33mcommit e6ad32d55fdd30356bd9a56c59a4a3390a2d0472[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    small fixes
+
+[33mcommit 816e07b3b3753249d8dae9cc68fba2f97ada0a1f[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working insert to db for the task and the project models
+
+[33mcommit 9e474c68bb8679f277af601f0a3ed7f906b5ef35[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add data to task service
+
+[33mcommit 2cb8ccd64afab75c03fb34434977c09c97b17454[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    lask working version, add task controller, service and repository
+
+[33mcommit 78bb156ea025354ba4eddba746a4d4d6c96b5e24[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    add all models and migrate them to db
+
+[33mcommit f7084ba940188d269f56923e9460fa2da0ea4a87[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix db initialization
+
+[33mcommit f27cef9a7fec39a67ddebffdd3b5cd2a2532ee62[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    lask working version with migration
+
+[33mcommit 712e24a69035192537bdb6d3f7d10ae53044e8b0[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    working remote debug
+
+[33mcommit db807e9abb05c55c0c3ce4d0f29eba7c8337045f[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    fix readme
+
+[33mcommit c8223a264d7aa5d18d902d8dcc54fcce255faa91[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    first commit
+
+[33mcommit 88c9384ae8319292b554d4ff5253bbe4e5aecae4[m
+Author: amitai salmon <amitai1997@gmail.com>
+Commit: amitai salmon <amitai1997@gmail.com>
+
+    first commit
