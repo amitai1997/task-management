@@ -38,6 +38,7 @@ class DevelopmentContainerConfig(Config):
 class DevelopmentlocalConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv('DEV_LOCAL_DATABASE_URL')
+    REDIS_URL = os.getenv('REDIS_URL', 'redis://redis:6379/0')
 
 
 class TestingConfig(Config):
