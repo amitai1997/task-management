@@ -206,5 +206,5 @@ pip-selfcheck.json
 .ionide
 
 task-management-venv/
-
+README.md
 # End of https://www.toptal.com/developers/gitignore/api/python,django,visualstudiocode
