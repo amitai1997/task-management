@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -5,11 +6,13 @@ from authlib.integrations.flask_client import OAuth
 from app.config import config
 from app.models.base_model import Base
 from app.auth.decorators import RBACAuthenticator
+import redis
 
 db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
 authenticator = RBACAuthenticator()
+redis_client = redis.Redis(os.getenv('REDIS_CONFIG'), '6379')
 
 
 def create_app(config_name):
@@ -22,6 +25,7 @@ def create_app(config_name):
     register_extensions(app)
     register_error_handlers(app)
     register_blueprints(app)
+
     with app.app_context():
         register_models()
 

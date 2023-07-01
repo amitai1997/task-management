@@ -1,8 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 from app.controllers.controllers import *
-from . import create_app
-import redis
+from . import create_app, redis_client
 
 
 ENV_FILE = find_dotenv()
@@ -10,7 +9,6 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-redis_client = redis.Redis.from_url(app.config['REDIS_URL'])
 
 
 @app.route("/")
