@@ -1,9 +1,8 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 from app.controllers.controllers import *
-from . import create_app, r
-import random
-import string
+from . import create_app
+
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
