@@ -12,7 +12,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
 authenticator = RBACAuthenticator()
-redis_client = redis.Redis(os.getenv('REDIS_CONFIG'), '6379')
+redis_client = redis.Redis(os.getenv('REDIS_CONFIG'), '6379', decode_responses=True)
 
 
 def create_app(config_name):
