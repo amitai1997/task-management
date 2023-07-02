@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 from app.controllers.controllers import *
-from . import create_app, redis_client
-
+from . import create_app, r
+import random
+import string
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:

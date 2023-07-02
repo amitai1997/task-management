@@ -12,7 +12,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
 authenticator = RBACAuthenticator()
-redis_client = redis.Redis(os.getenv('REDIS_CONFIG'), '6379', decode_responses=True)
+r = redis.Redis(os.getenv('REDIS_CONFIG'), '6379', decode_responses=True)
 
 
 def create_app(config_name):
@@ -25,9 +25,7 @@ def create_app(config_name):
     register_extensions(app)
     register_error_handlers(app)
     register_blueprints(app)
-
-    with app.app_context():
-        register_models()
+    register_models(app)
 
     return app
 
@@ -35,6 +33,8 @@ def create_app(config_name):
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
+    oauth.init_app(app)
+    authenticator.init_app(app)
 
 
 def register_blueprints(app):
@@ -43,6 +43,12 @@ def register_blueprints(app):
 
 
 def register_error_handlers(app):
+    @app.errorhandler(500)
+    def handle_internal_server_error(error):
+        error_message = f'Error: {error}'
+        app.logger.error(error_message)
+        return jsonify({"error": "Internal Server Error"}), 500
+
     @app.errorhandler(Exception)
     def handle_error(error):
         error_message = f'Error: {error}'
@@ -50,16 +56,16 @@ def register_error_handlers(app):
         return jsonify({"error": str(error)}), 500
 
 
-def register_models():
-    from app import db
+def register_models(app):
+    with app.app_context():
 
-    # Import and register your models here
-    from app.models.project_model import Project
-    from app.models.status_model import Status
-    from app.models.task_model import Task
-    from app.models.user_model import User
-    from app.models.user_roles_model import UserRole
-    from app.models.user_role_permission_model import UserRolePermission
-    from app.models.permission_model import Permission
+        # Import and register your models here
+        from app.models.project_model import Project
+        from app.models.status_model import Status
+        from app.models.task_model import Task
+        from app.models.user_model import User
+        from app.models.user_roles_model import UserRole
+        from app.models.user_role_permission_model import UserRolePermission
+        from app.models.permission_model import Permission
 
-    Base.metadata.create_all(bind=db.engine)
+        Base.metadata.create_all(bind=db.engine)

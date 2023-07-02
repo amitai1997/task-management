@@ -8,7 +8,13 @@ from jose.exceptions import JWTError
 
 
 class RBACAuthenticator:
-    def __init__(self):
+    def __init__(self, app=None):
+        self.app = app
+        if app:
+            self.init_app(app)
+
+    def init_app(self, app):
+        self.app = app
         self.auth0_domain = os.environ.get('AUTH0_DOMAIN')
         self.auth0_client_id = os.environ.get('AUTH0_CLIENT_ID')
         self.auth0_client_secret = os.environ.get('AUTH0_CLIENT_SECRET')
