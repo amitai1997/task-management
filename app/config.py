@@ -25,8 +25,6 @@ class Config:
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
     BCRYPT_LOG_ROUNDS = 12
     CACHE_TYPE = os.environ.get('CACHE_TYPE') or 'redis'
-    CACHE_REDIS_URL = f'redis://{os.getenv("REDIS_CONFIG")}:{os.getenv("REDIS_PORT")}/0'
-    # CACHE_REDIS_URL = f'redis://redis:{os.getenv("REDIS_PORT")}/0'
 
     @staticmethod
     def init_app(app):

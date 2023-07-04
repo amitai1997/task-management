@@ -38,7 +38,7 @@ def register_extensions(app):
     migrate.init_app(app, db)
     oauth.init_app(app)
     authenticator.init_app(app)
-    cache.init_app(app)
+    cache.init_app(app, config={'CACHE_REDIS_CLIENT': r})
 
 
 def register_blueprints(app):
