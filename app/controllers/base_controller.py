@@ -25,7 +25,7 @@ class BaseAPI(Blueprint):
         self.add_url_rule(
             '/<int:id>', methods=['DELETE'], view_func=self.delete_instance)
 
-    @cache.cached(timeout=60)
+    @cache.cached(timeout=15)
     def get_all_instances(self):
         filter_params = self._parse_filter_params()
         sort_params = request.args.get('sort_by')
