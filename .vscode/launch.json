@@ -37,8 +37,7 @@
           "remoteRoot": "/app"
         }
       ],
-      "justMyCode": false,
-      "module": "app"
+      "justMyCode": false
     }
   ]
 }

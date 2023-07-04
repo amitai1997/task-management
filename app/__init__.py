@@ -7,12 +7,15 @@ from app.config import config
 from app.models.base_model import Base
 from app.auth.decorators import RBACAuthenticator
 import redis
+from flask_caching import Cache
+
 
 db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
 authenticator = RBACAuthenticator()
-r = redis.Redis(os.getenv('REDIS_CONFIG'), '6379', decode_responses=True)
+r = redis.Redis(os.getenv('REDIS_CONFIG'), os.getenv('REDIS_PORT'), decode_responses=True)
+cache = Cache()
 
 
 def create_app(config_name):
@@ -35,6 +38,7 @@ def register_extensions(app):
     migrate.init_app(app, db)
     oauth.init_app(app)
     authenticator.init_app(app)
+    cache.init_app(app)
 
 
 def register_blueprints(app):
