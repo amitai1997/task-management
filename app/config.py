@@ -25,6 +25,7 @@ class Config:
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
     BCRYPT_LOG_ROUNDS = 12
     CACHE_TYPE = os.environ.get('CACHE_TYPE') or 'redis'
+    CACHE_REDIS_URL = f'redis://{os.getenv("REDIS_CONFIG")}:{os.getenv("REDIS_PORT")}/0'
 
     @staticmethod
     def init_app(app):
@@ -39,7 +40,6 @@ class DevelopmentContainerConfig(Config):
 class DevelopmentlocalConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv('DEV_LOCAL_DATABASE_URL')
-    REDIS_URL = os.getenv('REDIS_URL', 'redis://redis:6379/0')
 
 
 class TestingConfig(Config):

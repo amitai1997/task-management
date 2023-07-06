@@ -9,7 +9,6 @@ from app.auth.decorators import RBACAuthenticator
 import redis
 from flask_caching import Cache
 
-
 db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
