@@ -1,5 +1,6 @@
-from dotenv import load_dotenv
 import os
+from redis import Redis
+from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 load_dotenv()
@@ -25,6 +26,11 @@ class Config:
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
     BCRYPT_LOG_ROUNDS = 12
     CACHE_TYPE = os.environ.get('CACHE_TYPE') or 'redis'
+    SESSION_TYPE = os.environ.get('SESSION_TYPE') or 'redis'
+    SESSION_USE_SIGNER = True  # Optional: Enable session data signing for security
+    SESSION_PERMANENT = False  # Optional: Set session to expire when the browser is closed
+    SESSION_KEY_PREFIX = 'session:'  # Optional: Prefix for session keys in Redis
+    SESSION_REDIS = Redis(host=os.getenv('REDIS_CONFIG'), port=os.getenv('REDIS_PORT'))  # Redis connection details
     CACHE_REDIS_URL = f'redis://{os.getenv("REDIS_CONFIG")}:{os.getenv("REDIS_PORT")}/0'
 
     @staticmethod

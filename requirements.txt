@@ -20,6 +20,7 @@ Flask-Cors==3.0.10
 Flask-JWT-Extended==4.5.2
 Flask-Migrate==4.0.4
 Flask-RESTful==0.3.10
+flask-session==0.5.0
 Flask-SQLAlchemy==3.0.3
 format-datetime==0.6.dev0
 greenlet==2.0.2
