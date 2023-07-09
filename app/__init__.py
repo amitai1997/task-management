@@ -14,7 +14,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 oauth = OAuth()
 authenticator = RBACAuthenticator()
-r = redis.Redis(os.getenv('REDIS_CONFIG'), os.getenv('REDIS_PORT'), decode_responses=True)
+r = None
 cache = Cache()
 session = Session()
 
@@ -64,8 +64,18 @@ def register_extensions(app):
     migrate.init_app(app, db)
     oauth.init_app(app)
     authenticator.init_app(app)
+    global r
+    r = init_redis(app)  # Assign Redis instance to r
     cache.init_app(app, config={'CACHE_REDIS_CLIENT': r})
     session.init_app(app)
+
+
+def init_redis(app):
+    return redis.Redis(
+        host=app.config['REDIS_HOST'],
+        port=app.config['REDIS_PORT'],
+        decode_responses=True
+    )
 
 
 def register_blueprints(app):

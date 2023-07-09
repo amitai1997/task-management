@@ -16,6 +16,10 @@ class Config:
     SESSION_PERMANENT = False  # Optional: Set session to expire when the browser is closed
     SESSION_KEY_PREFIX = 'session:'  # Optional: Prefix for session keys in Redis
     SESSION_REDIS = Redis(host=os.getenv('REDIS_CONFIG'), port=os.getenv('REDIS_PORT'))  # Redis connection details
+    RATE_LIMIT = 5  # Maximum requests allowed within the time window (per user)
+    RATE_LIMIT_PERIOD = 10  # Time window in seconds
+    REDIS_HOST = os.getenv('REDIS_CONFIG')
+    REDIS_PORT = os.getenv('REDIS_PORT')
 
     @staticmethod
     def init_app(app):
