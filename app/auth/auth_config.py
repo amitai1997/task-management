@@ -36,7 +36,6 @@ class AuthBlueprint(Blueprint):
 
         if 'access_token' in token_data:
             session['access_token'] = token_data['access_token']
-            # session.set('access_token', token_data['access_token'])
             return 'Logged in successfully!'
 
         return 'Login failed.'

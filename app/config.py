@@ -8,30 +8,14 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.environ.get('APP_SECRET_KEY') or 'hard to guess string'
-    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT', '587'))
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
-        ['true', 'on', '1']
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
-    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-    SSL_REDIRECT = False
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_RECORD_QUERIES = True
-    FLASKY_POSTS_PER_PAGE = 20
-    FLASKY_FOLLOWERS_PER_PAGE = 50
-    FLASKY_COMMENTS_PER_PAGE = 30
-    FLASKY_SLOW_DB_QUERY_TIME = 0.5
     BCRYPT_LOG_ROUNDS = 12
     CACHE_TYPE = os.environ.get('CACHE_TYPE') or 'redis'
+    CACHE_REDIS_URL = f'redis://{os.getenv("REDIS_CONFIG")}:{os.getenv("REDIS_PORT")}/0'
     SESSION_TYPE = os.environ.get('SESSION_TYPE') or 'redis'
     SESSION_USE_SIGNER = True  # Optional: Enable session data signing for security
     SESSION_PERMANENT = False  # Optional: Set session to expire when the browser is closed
     SESSION_KEY_PREFIX = 'session:'  # Optional: Prefix for session keys in Redis
     SESSION_REDIS = Redis(host=os.getenv('REDIS_CONFIG'), port=os.getenv('REDIS_PORT'))  # Redis connection details
-    CACHE_REDIS_URL = f'redis://{os.getenv("REDIS_CONFIG")}:{os.getenv("REDIS_PORT")}/0'
 
     @staticmethod
     def init_app(app):
