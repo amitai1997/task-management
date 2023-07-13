@@ -2,7 +2,6 @@ from flask import jsonify
 from flask import jsonify, request
 from sqlalchemy.orm import class_mapper
 from datetime import datetime, timedelta
-from app import r
 
 
 def serialize_model(model):
@@ -13,6 +12,7 @@ def serialize_model(model):
 def rate_limit_decorator(rate_limit, rate_limit_period):
     def decorator(func):
         def wrapper(*args, **kwargs):
+            from app import r
             client_ip = request.remote_addr
             rate_limit_key = f"rate_limit:{client_ip}"
 

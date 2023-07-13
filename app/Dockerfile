@@ -17,7 +17,8 @@ COPY . app/
 # Set the environment variables
 ENV FLASK_ENV="docker"
 ENV FLASK_APP=app.app
-ENV REDIS_URL="redis://redis:6379"
+ENV FLASK_CONFIG="default" 
+ENV REDIS_CONFIG="redis"
 
 # Expose the port that the Flask application will run on
 EXPOSE 5000
